@@ -6,7 +6,10 @@ ARG PIG_VERSION=0.17.0
 ENV PIG_HOME=/opt/pig \
     PIG_CLASSPATH=/opt/hadoop/etc/hadoop
 # install pig
-RUN wget http://mirror.klaus-uwe.me/apache/pig/pig-$PIG_VERSION/pig-$PIG_VERSION.tar.gz && \
+RUN apt-get update && \
+    apt-get install -y mongo-tools && \
+    apt-get clean && \
+    wget http://mirror.klaus-uwe.me/apache/pig/pig-$PIG_VERSION/pig-$PIG_VERSION.tar.gz && \
     tar -xzf pig-$PIG_VERSION.tar.gz && \
     mv pig-$PIG_VERSION $PIG_HOME && \
     rm -rf ${PIG_HOME}/docs && \
